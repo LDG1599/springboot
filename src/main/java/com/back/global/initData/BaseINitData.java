@@ -18,16 +18,8 @@ public class BaseINitData {
         return args -> {
             if (postRepository.count()>0) return;
 
-            post post1 =new post();
-            post1.setTitle("제목 1");
-
-            postRepository.save(post1);
-
-            post post2 =new post();
-            post2.setTitle("제목 2");
-
-            postRepository.save(post2);
-
+            post post1 = postRepository.save(new post("제목 1","내용 1"));
+            post post2 = postRepository.save(new post("제목 2","내용 2"));
             System.out.println("기본 데이터가 초기화되었습니다.");
 
 

@@ -1,23 +1,26 @@
 package com.back.domain.post.post.entity;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Getter
 @Setter
+@RequiredArgsConstructor
 
 public class post {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private int id;
-    private String title;
+    private final String title;
     @Column(columnDefinition = "TEXT")
-    private String content;
+    private final String content;
 }
