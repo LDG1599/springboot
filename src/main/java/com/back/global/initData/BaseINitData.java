@@ -2,16 +2,17 @@ package com.back.global.initData;
 
 import com.back.domain.post.post.entity.post;
 import com.back.domain.post.post.service.postService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import java.util.Optional;
 
 @Configuration
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BaseINitData {
-    private postService postService;
+    private final postService postService;
+    private int callCount = 0;
 
 
     @Bean
@@ -21,6 +22,7 @@ public class BaseINitData {
            work1();
            work2();
 
+           callCount++;
         };
     }
     void work1() {
