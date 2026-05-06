@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
@@ -15,6 +16,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Getter
 @Setter
 @RequiredArgsConstructor
+@ToString
 
 public class post {
     @Id
@@ -23,4 +25,9 @@ public class post {
     private final String title;
     @Column(columnDefinition = "TEXT")
     private final String content;
+public post() {
+    this.title="";
+    this.content="";
+}
+
 }
