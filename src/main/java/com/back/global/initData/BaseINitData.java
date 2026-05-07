@@ -7,13 +7,17 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import java.util.Optional;
 
 
 @Configuration
 @RequiredArgsConstructor
 public class BaseINitData {
+    @Autowired
+    @Lazy
+    private BaseINitData self;
     private final postService postService;
 
 
@@ -22,8 +26,8 @@ public class BaseINitData {
     ApplicationRunner baseInitDataApplicationRunner(){
 
         return args -> {
-           work1();
-           work2();
+           self.work1();
+           self.work2();
 
         };
     }
