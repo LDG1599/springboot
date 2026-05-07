@@ -4,6 +4,8 @@ import com.back.domain.post.post.entity.post;
 import com.back.domain.post.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -22,5 +24,13 @@ public class postService {
 
     public Optional<post> findById(int id) {
         return postRepository.findById(id);
+    }
+
+    public void modify(post post, String title, String content) {
+        post.setTitle(title);
+        post.setContent(content);
+        post.setModifyDate(LocalDateTime.now());
+
+        postRepository.save(post);
     }
 }
