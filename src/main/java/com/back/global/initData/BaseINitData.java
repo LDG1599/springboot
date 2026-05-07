@@ -28,16 +28,17 @@ public class BaseINitData {
         return args -> {
            self.work1();
            self.work2();
-           self.work3();
+
+           new Thread(() -> self.work3()).start();
         };
     }
     @Transactional
     void work1() {
         if (postService.count()>0) return;
 
-        post post1 = new post("제목 1", "내용 1");
-        postService.save(post1);
-        post post2 = postService.save(new post("제목 2","내용 2"));
+        post post1 = postService.write("제목 1", "내용 1");
+
+        post post2 = postService.write("제목 2","내용 2");
 
         System.out.println(post1.getId());
         System.out.println(post2.getId());
@@ -59,5 +60,12 @@ public class BaseINitData {
         post post1 = opPost1.get();
 
         postService.modify(post1,"제목 1 수정","내용 1 수정");
+
+        if (true) throw new RuntimeException("work3에서 예외 발생");
+
+        Optional<post> opPost2 = postService.findById(2);
+        post post2 = opPost2.get();
+
+        postService.modify(post2,"제목 2 수정", "내용 2 수정");
     }
 }

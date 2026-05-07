@@ -17,11 +17,7 @@ public class postService {
     public long count() {
         return postRepository.count();
     }
-
-    public post save(post post) {
-        return postRepository.save(post);
-    }
-
+    
     public Optional<post> findById(int id) {
         return postRepository.findById(id);
     }
@@ -32,5 +28,12 @@ public class postService {
         post.setModifyDate(LocalDateTime.now());
 
         postRepository.save(post);
+    }
+
+    public post write(String title, String content)
+    {
+        post post =new post(title, content);
+        postRepository.save(post);
+        return post;
     }
 }
